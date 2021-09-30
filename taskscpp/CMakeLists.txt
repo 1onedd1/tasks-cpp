@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (taskscpp "taskscpp.cpp" "taskscpp.h" "file_reader.cpp" "datacar.cpp")
+add_executable (taskscpp "taskscpp.cpp" "taskscpp.h"  "datacar.cpp")
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
