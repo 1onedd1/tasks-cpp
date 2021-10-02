@@ -3,7 +3,8 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("taskscpp")
+project (taskscpp)
 
 # Включите подпроекты.
-add_subdirectory ("taskscpp")
+add_subdirectory (trucks)
+add_subdirectory (sensor)
