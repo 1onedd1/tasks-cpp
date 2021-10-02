@@ -3,7 +3,12 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+project(trucks)
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (taskscpp "taskscpp.cpp" "taskscpp.h"  "datacar.cpp")
+add_executable(${PROJECT_NAME} "src/main.cpp")
 
-# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+target_include_directories(${PROJECT_NAME}
+    PRIVATE ${PROJECT_SOURCE_DIR}/include
+)
+
+# Директория заголовочных файлов
