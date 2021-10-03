@@ -8,3 +8,4 @@ project (taskscpp)
 # Включите подпроекты.
 add_subdirectory (trucks)
 add_subdirectory (sensor)
+add_subdirectory (employeedb)
