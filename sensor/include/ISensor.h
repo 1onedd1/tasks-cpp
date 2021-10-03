@@ -3,8 +3,9 @@
 
 using namespace std;
 
-class Sensor {
+class ISensor {
 private:
+	// for inside computation
 	void virtual update() = 0;
 
 protected:
@@ -12,7 +13,6 @@ protected:
 	float value;
 
 public:
-
 	virtual float getValue() = 0;
 
 	virtual string getType() = 0;
