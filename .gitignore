@@ -1,2 +1,6 @@
 /out/
 /.vs/
+employeedb/include/jdbc/
+employeedb/include/mysql/
+employeedb/include/mysqlx/
+employeedb/lib/
