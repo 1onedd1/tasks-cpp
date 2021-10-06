@@ -18,7 +18,7 @@ void sortr(std::vector<DataCar>& vector);
 DateTime parseDateTime(std::string dt);
 void writeTruckFile(std::vector<DataCar>& list);
 void writeFile(std::string string, std::string file_path);
-void init();
+void prepare_folder();
 
 int main()
 {
@@ -45,7 +45,7 @@ int main()
 
 	sortr(CAR_LIST);
 
-	init(); //what init? - delete folder and files and create new if doesn't exists
+	prepare_folder(); 
 
 	std::vector<DataCar> list;
 	for (int i = 1; i < CAR_LIST.size(); i++)
@@ -96,18 +96,17 @@ void writeFile(std::string string, std::string file_path)
 	std::fstream fs;
 
 	fs.open(file_path, std::fstream::app);
-		std::cout << "asd";
 
 	if (fs.is_open())
 	{
-		std::cout << "asd2";
 		fs << string;
 	}
 
 	fs.close();
 }
 
-void init()
+//Method delete folder and files and create new if doesn't exists
+void prepare_folder()
 {
 	if (std::filesystem::exists("trucksdata"))
 	{
