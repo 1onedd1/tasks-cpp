@@ -1,14 +1,18 @@
 #pragma once
 
+#include <string>
+#include "DateTime.h"
+
 class DataCar
 {
 private:
-	std::string date; 
+	DateTime date;
 	std::string numberTruck;
 	int weight;
-public: 
-	DataCar(std::string date, std::string numberTruck, int weight);
-	std::string getDate();
-	std::string getNumberTruck();
-	int getWeight();
+public:
+	DataCar(DateTime date, std::string numberTruck, int weight) 
+		: date(date), numberTruck(numberTruck), weight(weight) {};
+	DateTime getDate() { return date; };
+	std::string getNumberTruck() { return numberTruck; };
+	int getWeight() { return weight; };
 };

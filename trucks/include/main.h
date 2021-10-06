@@ -3,6 +3,4 @@
 
 #pragma once
 
-std::vector<std::string> splitString(std::string string, std::string delimeter);
-
 // TODO: установите здесь ссылки на дополнительные заголовки, требующиеся для программы.
