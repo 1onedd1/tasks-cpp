@@ -1,7 +1,4 @@
-﻿// taskscpp.cpp: определяет точку входа для приложения.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -14,10 +11,9 @@
 #include "util.h"
 #include "CarManager.h"
 
-void sortr(std::vector<DataCar>& vector);
-DateTime parseDateTime(std::string dt);
-void writeTruckFile(std::vector<DataCar>& list);
-void writeFile(std::string string, std::string file_path);
+void sort_vectorOfDataCar(std::vector<DataCar>& vector);
+DateTime parse_DateTime(std::string dt);
+void writeToFile(std::string string, std::string file_path);
 void prepare_folder();
 
 int main()
@@ -34,7 +30,7 @@ int main()
 
 		std::vector<std::string> infoCar = splitString(input, ", ");
 
-		DateTime dt = parseDateTime(infoCar.at(0));
+		DateTime dt = parse_DateTime(infoCar.at(0));
 		int weight = std::stoi(infoCar.at(2));
 
 		DataCar dc(dt, infoCar.at(1), weight);
@@ -43,7 +39,7 @@ int main()
 
 	table.close();
 
-	sortr(CAR_LIST);
+	sort_vectorOfDataCar(CAR_LIST);
 
 	prepare_folder(); 
 
@@ -55,10 +51,9 @@ int main()
 
 		list.push_back(car1);
 
+		DateTime dt = car1.getDate();
 		std::string truck = car1.getNumberTruck();
 		std::ostringstream out_string;
-
-		DateTime dt = car1.getDate();
 
 		out_string << dt.getHour() << "." << dt.getMinute() <<
 			" " << dt.getDay() << "." << dt.getMonth() << "." <<
@@ -71,9 +66,7 @@ int main()
 		std::stringstream ss_path;
 		ss_path << prefix + truck + suffix;
 
-
-		std::cout << ss_path.str();
-		writeFile(out_string.str(), ss_path.str());
+		writeToFile(out_string.str(), ss_path.str());
 
 		if (!(truck._Equal(car2.getNumberTruck())) || CAR_LIST.size() == i + 1)
 		{
@@ -81,17 +74,15 @@ int main()
 			int sum = cm.sumWeight(list);
 			list.clear();
 			std::stringstream ss_total;
-			ss_total << "total weight " << sum;
-			writeFile(ss_total.str(), ss_path.str());
+			ss_total << "total weight: " << sum;
+			writeToFile(ss_total.str(), ss_path.str());
 		}
 	}
-
-	//writeTruckFile(CAR_LIST);
 
 	return 0;
 }
 
-void writeFile(std::string string, std::string file_path)
+void writeToFile(std::string string, std::string file_path)
 {
 	std::fstream fs;
 
@@ -105,7 +96,7 @@ void writeFile(std::string string, std::string file_path)
 	fs.close();
 }
 
-//Method delete folder and files and create new if doesn't exists
+//delete folder and files and create new folder if it doesn't exists
 void prepare_folder()
 {
 	if (std::filesystem::exists("trucksdata"))
@@ -121,7 +112,7 @@ void prepare_folder()
 	}
 }
 
-DateTime parseDateTime(std::string dt)
+DateTime parse_DateTime(std::string dt)
 {
 	std::vector<std::string> date_time = splitString(dt, " ");
 
@@ -141,7 +132,7 @@ DateTime parseDateTime(std::string dt)
 	return DateTime(day, month, year, hour, minute);
 }
 
-void sortr(std::vector<DataCar>& vector)
+void sort_vectorOfDataCar(std::vector<DataCar>& vector)
 {
 	for (int i = 0; i < vector.size(); i++)
 	{
