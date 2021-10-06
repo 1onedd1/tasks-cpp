@@ -7,7 +7,9 @@ private:
 	void update() override
 	{
 		for (;;) {
-			//some computed
+			if (!hasPower) break;
+
+			//some computation
 			value = value + 1;
 
 			if (value == 10)
