@@ -14,7 +14,7 @@ set(SOURCES
     src/util.cpp
     src/DateTime.cpp
     src/DataCar.cpp
-    src/CarManager.cpp
+    
 )
 
 # Добавьте источник в исполняемый файл этого проекта.

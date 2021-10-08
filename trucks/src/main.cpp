@@ -43,38 +43,32 @@ int main()
 
 	prepare_folder(); 
 
-	std::vector<DataCar> list;
+	int sumWeight = 0;
 	for (int i = 1; i < CAR_LIST.size(); i++)
 	{
 		DataCar car1 = CAR_LIST.at(i - 1);
 		DataCar car2 = CAR_LIST.at(i);
 
-		list.push_back(car1);
+		sumWeight += car1.getWeight();
 
 		DateTime dt = car1.getDate();
 		std::string truck = car1.getNumberTruck();
+
 		std::ostringstream out_string;
-
-		out_string << dt.getHour() << "." << dt.getMinute() <<
-			" " << dt.getDay() << "." << dt.getMonth() << "." <<
-			dt.getYear() << ", " << truck << ", " <<
-			car1.getWeight() << std::endl;
-
-		std::string suffix = ".txt";
-		std::string prefix = "./trucksdata/";
+		out_string << dt.getHour() << "." << dt.getMinute() << " " << dt.getDay() << "." << dt.getMonth() << 
+			"." << dt.getYear() << ", " << truck << ", " << car1.getWeight() << std::endl;
 
 		std::stringstream ss_path;
-		ss_path << prefix + truck + suffix;
+		ss_path << "./trucksdata/" << truck << ".txt";
 
 		writeToFile(out_string.str(), ss_path.str());
 
 		if (!(truck._Equal(car2.getNumberTruck())) || CAR_LIST.size() == i + 1)
 		{
 			CarManager cm;
-			int sum = cm.sumWeight(list);
-			list.clear();
 			std::stringstream ss_total;
-			ss_total << "total weight: " << sum;
+			ss_total << "total weight: " << sumWeight;
+			sumWeight = 0;
 			writeToFile(ss_total.str(), ss_path.str());
 		}
 	}
